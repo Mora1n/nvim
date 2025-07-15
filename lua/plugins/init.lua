@@ -13,26 +13,47 @@ return {
     end,
   },
 
-  -- Toggle between relative and absolute line numbers
-  'jeffkreeftmeijer/vim-numbertoggle',
+  -- Modern syntax highlighting
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'javascript', 'typescript', 'html', 'css' },
+        sync_install = false,
+        auto_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+      })
+    end,
+  },
 
   -- Support for .editorconfig files
-  'editorconfig/editorconfig-vim',
+  'gpanders/editorconfig.nvim',
 
   -- Smart auto-pairing of delimiters
-  'raimondi/delimitmate',
-
-  -- Auto-add 'end' in certain filetypes
-  'tpope/vim-endwise',
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- uses default configuration
+  },
 
   -- Auto-detect indentation settings
   'tpope/vim-sleuth',
 
   -- Quickly change surrounding characters
-  'tpope/vim-surround',
-
-  -- Comprehensive syntax & indent support
-  'sheerun/vim-polyglot',
+  {
+    'kylechui/nvim-surround',
+    version = '*', -- Use for stability; avoids breaking changes
+    event = 'VeryLazy',
+    config = function()
+      require('nvim-surround').setup({
+        -- Configuration options go here
+      })
+    end,
+  },
 
   -- Dracula theme
   {
