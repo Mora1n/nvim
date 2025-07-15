@@ -1,9 +1,14 @@
 return {
   -- Status line
   {
-    'vim-airline/vim-airline',
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      vim.g.airline_theme = 'dracula_pro'
+      require('lualine').setup({
+        options = {
+          theme = 'dracula'
+        }
+      })
     end,
   },
 
@@ -28,12 +33,12 @@ return {
   -- Comprehensive syntax & indent support
   'sheerun/vim-polyglot',
 
-  -- Dracula Pro theme
+  -- Dracula theme
   {
-    'Mora1n/vim-dracula-pro',
-    as = 'dracula_pro',
+    'Mofiqul/dracula.nvim',
+    priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'dracula_pro'
+      vim.cmd.colorscheme 'dracula'
     end,
   },
 }
