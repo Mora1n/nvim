@@ -77,3 +77,24 @@ vim.opt.termguicolors = true
 -- Set dark background
 vim.opt.background = 'dark'
 
+-- Performance optimizations
+vim.opt.lazyredraw = false -- Don't redraw while executing macros (set to true if you experience lag)
+vim.opt.ttyfast = true -- Faster terminal connection
+vim.opt.laststatus = 3 -- Global statusline (faster)
+vim.opt.swapfile = false -- No swap files
+vim.opt.backup = false -- No backup files
+vim.opt.writebackup = false -- No backup before overwriting
+
+-- Additional performance settings
+vim.opt.history = 1000 -- Limit command history
+vim.opt.synmaxcol = 240 -- Max column for syntax highlight
+vim.opt.redrawtime = 1500 -- Time in ms for redrawing
+vim.opt.maxmempattern = 5000 -- Max memory for pattern matching
+
+-- Faster completion
+vim.opt.pumheight = 15 -- Popup menu height
+vim.opt.pumblend = 10 -- Popup menu transparency
+
+-- Faster file operations
+vim.opt.fsync = false -- Don't fsync after write (faster but less safe)
+
