@@ -35,64 +35,48 @@ The leader key is set to `<Space>`.
 
 ### Completion & LSP
 
-*   **[blink.cmp](https://github.com/saghen/blink.cmp):** Performant completion plugin with Rust fuzzy matching.
-    *   Sources: LSP, path, snippets, buffer
-    *   Auto-show documentation with 200ms delay
-    *   Signature help enabled
+*   **[blink.cmp](https://github.com/saghen/blink.cmp):** Rust-powered completion engine.
 *   **Native LSP:** Uses Neovim's built-in LSP without nvim-lspconfig.
-    *   `gd`: Go to definition
-    *   `gD`: Go to declaration
-    *   `gr`: References
-    *   `gi`: Implementation
-    *   `K`: Hover documentation
-    *   `<leader>rn`: Rename
-    *   `<leader>ca`: Code actions
-    *   `<leader>f`: Format
+
+### Navigation & Search
+
+*   **[fzf-lua](https://github.com/ibhagwan/fzf-lua):** Fuzzy finder for files, buffers, and grep.
+    *   `<leader>ff`: Find files
+    *   `<leader>fg`: Live grep
+    *   `<leader>fb`: Find buffers
+    *   `<leader>fo`: Recent files
+    *   `<leader>fw`: Grep word under cursor
+    *   `<leader>fr`: Resume last search
+    *   `<leader>f/`: Search in current buffer
+    *   `<leader>fh`: Help tags
+*   **[flash.nvim](https://github.com/folke/flash.nvim):** Enhanced jump motions.
+*   **[which-key.nvim](https://github.com/folke/which-key.nvim):** Keybinding helper popup.
 
 ### Editor
 
-*   **[autopairs.nvim](https://github.com/windwp/nvim-autopairs):** Inserts or deletes brackets, parens, quotes in pair.
-*   **[flash.nvim](https://github.com/folke/flash.nvim):** Enhanced jump motions for Neovim.
-    *   `s`: Flash jump
-    *   `S`: Flash Treesitter
-    *   `r`: Remote Flash (operator pending mode)
-    *   `R`: Treesitter Search (operator pending and visual mode)
-    *   `<c-s>`: Toggle Flash Search (command-line mode)
-*   **[vim-sleuth](https://github.com/tpope/vim-sleuth):** Heuristically set `shiftwidth` and `expandtab` based on the current file.
-*   **[nvim-surround](https://github.com/kylechui/nvim-surround):** Add/change/delete surrounding pairs of characters.
-*   **[editorconfig.nvim](https://github.com/gpanders/editorconfig.nvim):** EditorConfig support for Neovim.
+*   **[autopairs.nvim](https://github.com/windwp/nvim-autopairs):** Auto-close brackets and quotes.
+*   **[Comment.nvim](https://github.com/numToStr/Comment.nvim):** Smart commenting with `gcc`, `gbc`, `Ctrl+/`.
+*   **[nvim-surround](https://github.com/kylechui/nvim-surround):** Manage surrounding pairs.
+*   **[vim-sleuth](https://github.com/tpope/vim-sleuth):** Auto-detect indentation.
+*   **[vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent):** PEP8 indentation for Python.
 
 ### UI
 
-*   **[alpha-nvim](https://github.com/goolord/alpha-nvim):** Fast and customizable dashboard with ASCII art startup screen.
-    *   `e`: New file
-    *   `f`: Find file
-    *   `r`: Recent files
-    *   `g`: Find text
-    *   `c`: Configuration
-    *   `l`: Lazy
-    *   `q`: Quit
-*   **[dracula.nvim](https://github.com/Mofiqul/dracula.nvim):** Dracula colorscheme with transparent background.
-*   **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim):** A blazing fast and easy to configure statusline with global statusline enabled.
+*   **[alpha-nvim](https://github.com/goolord/alpha-nvim):** Dashboard with ASCII art.
+*   **[dracula.nvim](https://github.com/Mofiqul/dracula.nvim):** Dracula colorscheme with transparency.
+*   **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim):** Fast statusline.
 
 ### Syntax
 
-*   **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter):** Provides syntax highlighting, indentation, and incremental selection using Treesitter.
-    *   **Installed parsers:** `bash`, `c`, `cpp`, `css`, `go`, `gomod`, `html`, `javascript`, `json`, `jsonc`, `latex`, `lua`, `make`, `markdown`, `markdown_inline`, `python`, `rust`, `toml`, `typescript`, `vimdoc`, `vue`, `yaml`.
-    *   Automatic disable for files >100KB
-    *   Incremental selection with `<CR>`, `<TAB>`, `<S-TAB>`
+*   **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter):** Syntax highlighting and parsing.
+    *   **Parsers:** `bash`, `c`, `cpp`, `css`, `go`, `gomod`, `html`, `javascript`, `json`, `jsonc`, `lua`, `make`, `markdown`, `markdown_inline`, `python`, `rust`, `toml`, `typescript`, `vimdoc`, `vue`, `yaml`
+    *   Auto-disable for files >100KB
 
 ### Performance
 
-*   **[faster.nvim](https://github.com/pteroctopus/faster.nvim):** Automatically disables heavy features for big files (>2MB).
-    *   Disables: LSP, treesitter, syntax, matchparen for large files
-    *   Fast macro execution mode
-*   **[vim-startuptime](https://github.com/dstein64/vim-startuptime):** Analyze startup performance with `:StartupTime`.
-*   **[nvim-bufdel](https://github.com/ojroques/nvim-bufdel):** Optimized buffer deletion.
-    *   `<leader>bd`: Delete buffer
-    *   `<leader>bD`: Delete buffer (force)
-    *   `<leader>ba`: Delete all buffers
-    *   `<leader>bo`: Delete other buffers
+*   **[faster.nvim](https://github.com/pteroctopus/faster.nvim):** Auto-optimize for large files (>2MB).
+*   **[vim-startuptime](https://github.com/dstein64/vim-startuptime):** Startup profiler (`:StartupTime`).
+*   **[nvim-bufdel](https://github.com/ojroques/nvim-bufdel):** Optimized buffer deletion (`<leader>bd/bD/ba/bo`).
 
 ## LSP Configuration
 

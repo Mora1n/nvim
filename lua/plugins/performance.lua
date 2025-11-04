@@ -1,31 +1,4 @@
 return {
-  -- Improve startup time by caching lua modules
-  {
-    'lewis6991/impatient.nvim',
-    enabled = vim.fn.has('nvim-0.9') == 0, -- Only for Neovim < 0.9 (0.9+ has built-in loader)
-    config = function()
-      require('impatient')
-    end,
-  },
-
-  -- Filetype detection optimization (already built into Neovim 0.8+)
-  {
-    'nathom/filetype.nvim',
-    enabled = vim.fn.has('nvim-0.8') == 0, -- Only for Neovim < 0.8
-    config = function()
-      require('filetype').setup({
-        overrides = {
-          extensions = {
-            py = 'python',
-            lua = 'lua',
-            js = 'javascript',
-            ts = 'typescript',
-          },
-        },
-      })
-    end,
-  },
-
   -- Optimize buffer deletion
   {
     'ojroques/nvim-bufdel',
