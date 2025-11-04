@@ -64,14 +64,23 @@ The leader key is set to `<Space>`.
 
 ### UI
 
+*   **[alpha-nvim](https://github.com/goolord/alpha-nvim):** Fast and customizable dashboard with ASCII art startup screen.
+    *   `e`: New file
+    *   `f`: Find file
+    *   `r`: Recent files
+    *   `g`: Find text
+    *   `c`: Configuration
+    *   `l`: Lazy
+    *   `q`: Quit
 *   **[dracula.nvim](https://github.com/Mofiqul/dracula.nvim):** Dracula colorscheme with transparent background.
 *   **[lualine.nvim](https://github.com/nvim-lualine/lualine.nvim):** A blazing fast and easy to configure statusline with global statusline enabled.
 
 ### Syntax
 
 *   **[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter):** Provides syntax highlighting, indentation, and incremental selection using Treesitter.
-    *   **Installed parsers:** `c`, `lua`, `vim`, `vimdoc`, `query`, `python`, `javascript`, `typescript`, `html`, `css`, `json`, `markdown`, `markdown_inline`.
+    *   **Installed parsers:** `bash`, `c`, `cpp`, `css`, `go`, `gomod`, `html`, `javascript`, `json`, `jsonc`, `latex`, `lua`, `make`, `markdown`, `markdown_inline`, `python`, `rust`, `toml`, `typescript`, `vimdoc`, `vue`, `yaml`.
     *   Automatic disable for files >100KB
+    *   Incremental selection with `<CR>`, `<TAB>`, `<S-TAB>`
 
 ### Performance
 
