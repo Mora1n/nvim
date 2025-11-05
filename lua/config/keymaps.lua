@@ -48,6 +48,22 @@ vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>', { desc = 'Quit all without saving' })
 
+-- Insert mode navigation and selection
+vim.keymap.set('i', '<Home>', '<C-o>^', { desc = 'Go to line start' })
+vim.keymap.set('i', '<End>', '<C-o>$', { desc = 'Go to line end' })
+vim.keymap.set('i', '<S-Home>', '<C-o>v^', { desc = 'Select to line start' })
+vim.keymap.set('i', '<S-End>', '<C-o>v$', { desc = 'Select to line end' })
+vim.keymap.set('i', '<S-Left>', '<C-o>vh', { desc = 'Select left' })
+vim.keymap.set('i', '<S-Right>', '<C-o>vl', { desc = 'Select right' })
+vim.keymap.set('i', '<C-Left>', '<C-o>b', { desc = 'Move word left' })
+vim.keymap.set('i', '<C-Right>', '<C-o>w', { desc = 'Move word right' })
+vim.keymap.set('i', '<C-S-Left>', '<C-o>vb', { desc = 'Select word left' })
+vim.keymap.set('i', '<C-S-Right>', '<C-o>vw', { desc = 'Select word right' })
+vim.keymap.set('i', '<C-a>', '<C-o>ggVG', { desc = 'Select all' })
+vim.keymap.set('i', '<C-z>', '<C-o>u', { desc = 'Undo' })
+vim.keymap.set('i', '<C-y>', '<C-o><C-r>', { desc = 'Redo' })
+vim.keymap.set('i', '<C-BS>', '<C-w>', { desc = 'Delete word backward' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
