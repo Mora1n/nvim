@@ -1,5 +1,8 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-context',
+  },
   build = ':TSUpdate',
   event = { 'BufReadPost', 'BufNewFile' },
   cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
@@ -53,7 +56,23 @@ return {
       },
       indent = {
         enable = true,
+        disable = {},
       },
+    })
+
+    require('treesitter-context').setup({
+      enable = true,
+      max_lines = 3,
+      trim_scope = 'outer',
+      mode = 'cursor',
+    })
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'python',
+      callback = function()
+        vim.opt_local.smartindent = false
+        vim.opt_local.cindent = false
+      end,
     })
   end,
 }

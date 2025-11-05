@@ -58,7 +58,7 @@ vim.opt.expandtab = true
 
 -- Indentation helpers
 vim.opt.autoindent = true
-vim.opt.smartindent = true
+-- vim.opt.smartindent = true  -- Disable smartindent and use Treesitter
 vim.opt.copyindent = true
 
 -- Other basic settings

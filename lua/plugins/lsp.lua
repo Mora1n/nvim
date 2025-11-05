@@ -33,59 +33,67 @@ return {
       -- Load ty.lua for Python LSP
       local ty_config = dofile(lsp_dir .. '/ty.lua')
       if ty_config and vim.fn.executable('ty') == 1 then
+        -- Configure ty language server
         vim.lsp.config('ty', {
           cmd = ty_config.cmd,
           filetypes = ty_config.filetypes,
           root_dir = find_root(ty_config.root_markers),
           capabilities = capabilities,
+          settings = {
+            ty = {
+              -- ty language server settings go here
+            }
+          },
+          on_attach = function(client, bufnr)
+            -- LSP keymaps for ty
+            local opts = { buffer = bufnr, noremap = true, silent = true }
+
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+            vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+            vim.keymap.set('n', '<leader>f', function()
+              vim.lsp.buf.format({ async = true })
+            end, opts)
+
+            -- Highlight references under cursor
+            if client.supports_method('textDocument/documentHighlight') then
+              local group = vim.api.nvim_create_augroup('lsp_document_highlight_' .. bufnr, { clear = true })
+              vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                buffer = bufnr,
+                group = group,
+                callback = vim.lsp.buf.document_highlight,
+              })
+              vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                buffer = bufnr,
+                group = group,
+                callback = vim.lsp.buf.clear_references,
+              })
+            end
+          end,
         })
 
-        -- Enable ty LSP for Python files
+        -- Enable the language server
+        -- Note: vim.lsp.enable('ty') should work according to docs, but we use
+        -- vim.lsp.start as a reliable implementation for Neovim 0.11.4
         vim.api.nvim_create_autocmd('FileType', {
           pattern = 'python',
           callback = function(args)
-            vim.lsp.enable('ty')
+            local root = find_root(ty_config.root_markers)(vim.api.nvim_buf_get_name(args.buf))
+            if root then
+              vim.lsp.start({
+                name = 'ty',
+                cmd = ty_config.cmd,
+                root_dir = root,
+                capabilities = capabilities,
+              })
+            end
           end,
         })
       end
-
-      -- LSP keymaps
-      vim.api.nvim_create_autocmd('LspAttach', {
-        callback = function(args)
-          local bufnr = args.buf
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-          if not client then return end
-
-          -- Keymaps
-          local opts = { buffer = bufnr, silent = true }
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-          vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-          vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', '<leader>f', function()
-            vim.lsp.buf.format({ async = true })
-          end, opts)
-
-          -- Highlight references under cursor
-          if client.supports_method('textDocument/documentHighlight') then
-            local group = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-              buffer = bufnr,
-              group = group,
-              callback = vim.lsp.buf.document_highlight,
-            })
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-              buffer = bufnr,
-              group = group,
-              callback = vim.lsp.buf.clear_references,
-            })
-          end
-        end,
-      })
 
       -- Diagnostic configuration
       vim.diagnostic.config({
