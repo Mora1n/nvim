@@ -3,53 +3,53 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     require('Comment').setup({
-      -- 基础配置
-      padding = true,   -- 注释符号和文本之间添加空格
-      sticky = true,    -- 光标保持在原位置
-      ignore = '^$',    -- 忽略空行
+      -- Basic configuration
+      padding = true,   -- Add space between comment symbol and text
+      sticky = true,    -- Keep cursor at its position
+      ignore = '^$',    -- Ignore empty lines
 
-      -- 切换映射
+      -- Toggle mappings
       toggler = {
-        line = 'gcc',   -- 行注释切换
-        block = 'gbc',  -- 块注释切换
+        line = 'gcc',   -- Line comment toggle
+        block = 'gbc',  -- Block comment toggle
       },
 
-      -- 操作映射
+      -- Operator mappings
       opleader = {
-        line = 'gc',    -- 行注释操作
-        block = 'gb',   -- 块注释操作
+        line = 'gc',    -- Line comment operator
+        block = 'gb',   -- Block comment operator
       },
 
-      -- 额外映射
+      -- Extra mappings
       extra = {
-        above = 'gcO',  -- 在上方添加注释
-        below = 'gco',  -- 在下方添加注释
-        eol = 'gcA',    -- 在行尾添加注释
+        above = 'gcO',  -- Add comment above
+        below = 'gco',  -- Add comment below
+        eol = 'gcA',    -- Add comment at end of line
       },
 
-      -- 启用所有模式的映射
+      -- Enable mappings for all modes
       mappings = {
         basic = true,
         extra = true,
       },
     })
 
-    -- 自定义 Ctrl+/ 快捷键
+    -- Custom Ctrl+/ keybindings
     local api = require('Comment.api')
 
-    -- Normal 模式：Ctrl+/ 注释当前行
+    -- Normal mode: Ctrl+/ to toggle comment on current line
     vim.keymap.set('n', '<C-_>', function()
       api.toggle.linewise.current()
     end, { desc = 'Toggle comment line' })
 
-    -- Visual 模式：Ctrl+/ 注释选中的行
+    -- Visual mode: Ctrl+/ to toggle comment on selected lines
     vim.keymap.set('x', '<C-_>', function()
       local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
       vim.api.nvim_feedkeys(esc, 'nx', false)
       api.toggle.linewise(vim.fn.visualmode())
     end, { desc = 'Toggle comment selection' })
 
-    -- Insert 模式：Ctrl+/ 注释当前行
+    -- Insert mode: Ctrl+/ to toggle comment on current line
     vim.keymap.set('i', '<C-_>', function()
       api.toggle.linewise.current()
     end, { desc = 'Toggle comment line' })

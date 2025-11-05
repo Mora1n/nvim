@@ -78,7 +78,7 @@ vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 
 -- Performance optimizations
-vim.opt.lazyredraw = false -- Don't redraw while executing macros (set to true if you experience lag)
+vim.opt.lazyredraw = true -- Don't redraw while executing macros (improves performance)
 vim.opt.ttyfast = true -- Faster terminal connection
 vim.opt.laststatus = 3 -- Global statusline (faster)
 vim.opt.swapfile = false -- No swap files
@@ -91,9 +91,24 @@ vim.opt.synmaxcol = 240 -- Max column for syntax highlight
 vim.opt.redrawtime = 1500 -- Time in ms for redrawing
 vim.opt.maxmempattern = 5000 -- Max memory for pattern matching
 
+-- Additional optimizations
+vim.opt.shadafile = "NONE"  
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.opt.shadafile = ""
+    vim.cmd("rshada")
+  end,
+})
+
+vim.opt.updatetime = 250
+
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+
 -- Faster completion
 vim.opt.pumheight = 15 -- Popup menu height
-vim.opt.pumblend = 10 -- Popup menu transparency
+vim.opt.pumblend = 0 -- Popup menu transparency
 
 -- Faster file operations
 vim.opt.fsync = false -- Don't fsync after write (faster but less safe)
