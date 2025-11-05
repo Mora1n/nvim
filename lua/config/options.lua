@@ -78,8 +78,6 @@ vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 
 -- Performance optimizations
-vim.opt.lazyredraw = true -- Don't redraw while executing macros (improves performance)
-vim.opt.ttyfast = true -- Faster terminal connection
 vim.opt.laststatus = 3 -- Global statusline (faster)
 vim.opt.swapfile = false -- No swap files
 vim.opt.backup = false -- No backup files
@@ -99,8 +97,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.cmd("rshada")
   end,
 })
-
-vim.opt.updatetime = 250
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
