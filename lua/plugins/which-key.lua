@@ -51,8 +51,8 @@ return {
       { 'K', desc = 'Hover documentation' },
 
       -- Diagnostics
-      { '<leader>d', group = 'Diagnostics' },
-      { '<leader>dl', desc = 'Open diagnostic list' },
+      { '<leader>x', group = 'Diagnostics' },
+      { '<leader>xl', desc = 'Open diagnostic list' },
       { '<leader>e', desc = 'Show diagnostic error' },
       { '[d', desc = 'Previous diagnostic' },
       { ']d', desc = 'Next diagnostic' },
