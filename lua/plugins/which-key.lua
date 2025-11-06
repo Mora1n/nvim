@@ -83,14 +83,15 @@ return {
       { '<leader>q', desc = 'Quit' },
       { '<leader>Q', desc = 'Quit all without saving' },
 
-      -- Comment keybindings
+      -- Comment keybindings (Comment.nvim)
       { 'gc', group = 'Comment' },
       { 'gcc', desc = 'Toggle comment line' },
       { 'gbc', desc = 'Toggle block comment' },
+      { 'gb', desc = 'Block comment operator', mode = { 'n', 'v' } },
       { 'gcO', desc = 'Comment above' },
       { 'gco', desc = 'Comment below' },
       { 'gcA', desc = 'Comment end of line' },
-      { '<C-_>', desc = 'Toggle comment (Ctrl+/)' },
+      { '<C-_>', desc = 'Toggle comment (Ctrl+/)', mode = { 'n', 'x', 'i' } },
 
       -- Window navigation (Ctrl+hjkl)
       { '<C-h>', desc = 'Move to left window' },
@@ -131,6 +132,28 @@ return {
 
       -- Select mode
       { '<BS>', desc = 'Delete selection and insert', mode = 's' },
+
+      -- Flash.nvim keybindings
+      { 's', desc = 'Flash jump', mode = { 'n', 'x', 'o' } },
+      { 'S', desc = 'Flash Treesitter', mode = { 'n', 'x', 'o' } },
+      { 'r', desc = 'Remote Flash', mode = 'o' },
+      { 'R', desc = 'Treesitter Search', mode = { 'o', 'x' } },
+      { '<c-s>', desc = 'Toggle Flash Search', mode = 'c' },
+
+      -- Treesitter incremental selection
+      { '<CR>', desc = 'Init/Increment selection', mode = { 'n', 'v' } },
+      { '<TAB>', desc = 'Increment scope', mode = 'v' },
+      { '<S-TAB>', desc = 'Decrement node', mode = 'v' },
+
+      -- Surround.nvim keybindings (nvim-surround default mappings)
+      { 'ys', desc = 'Add surround', mode = 'n' },
+      { 'yss', desc = 'Add surround to line', mode = 'n' },
+      { 'yS', desc = 'Add surround on new lines', mode = 'n' },
+      { 'ySS', desc = 'Add surround to line on new lines', mode = 'n' },
+      { 'ds', desc = 'Delete surround', mode = 'n' },
+      { 'cs', desc = 'Change surround', mode = 'n' },
+      { 'S', desc = 'Add surround', mode = 'v' },
+      { 'gS', desc = 'Add surround on new lines', mode = 'v' },
     }
 
     wk.add(keymaps)
