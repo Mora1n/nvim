@@ -5,11 +5,16 @@ return {
   },
   version = '1.*',
   event = 'InsertEnter',
+  -- Disable in VSCode as it has its own completion system
+  enabled = vim.g.vscode == nil,
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    keymap = { preset = 'super-tab' },
+    keymap = {
+      preset = 'super-tab',
+      ['<Esc>'] = { 'hide', 'fallback' },
+    },
 
     appearance = {
       nerd_font_variant = 'mono',
@@ -40,9 +45,9 @@ return {
       providers = {
         buffer = {
           opts = {
-            max_sync_buffer_size = 20000,
-            max_async_buffer_size = 200000,
-            max_total_buffer_size = 500000,
+            max_sync_buffer_size = 10000,
+            max_async_buffer_size = 100000,
+            max_total_buffer_size = 200000,
           },
         },
       },

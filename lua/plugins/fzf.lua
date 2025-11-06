@@ -2,6 +2,7 @@ return {
   'ibhagwan/fzf-lua',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
+  enabled = vim.g.vscode == nil,
   config = function()
     require('fzf-lua').setup({
       winopts = {

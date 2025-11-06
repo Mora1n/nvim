@@ -3,7 +3,7 @@ return {
   lazy = false,
   opts = {
     behaviours = {
-      -- Automatically disable heavy features for big files (>2MB)
+      -- Automatically disable heavy features for big files (>1MB, consistent with other configs)
       bigfile = {
         on = true,
         features_disabled = {
@@ -14,7 +14,7 @@ return {
           'treesitter',
           'vimopts',
         },
-        filesize = 2, -- size in MiB
+        filesize = 1, -- size in MiB (consistent with autocmds.lua and treesitter.lua)
       },
       -- Speed up macro execution by disabling statusline updates
       fastmacro = {

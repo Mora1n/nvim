@@ -19,7 +19,7 @@ return {
     })
 
     -- Document existing key chains
-    wk.add({
+    local keymaps = {
       -- Find group (FzfLua)
       { '<leader>f', group = 'Find' },
       { '<leader>ff', desc = 'Find files' },
@@ -40,9 +40,18 @@ return {
       { '<S-h>', desc = 'Previous buffer' },
       { '<S-l>', desc = 'Next buffer' },
 
+      -- Window management
+      { '<leader>w', group = 'Window' },
+      { '<leader>wv', desc = 'Split vertically' },
+      { '<leader>ws', desc = 'Split horizontally' },
+      { '<leader>wc', desc = 'Close window' },
+      { '<leader>wo', desc = 'Close other windows' },
+      { '<leader>w=', desc = 'Equalize sizes' },
+
       -- LSP
       { '<leader>c', group = 'Code' },
       { '<leader>ca', desc = 'Code action' },
+      { '<leader>cf', desc = 'Format' },
       { '<leader>rn', desc = 'Rename' },
       { 'gd', desc = 'Go to definition' },
       { 'gD', desc = 'Go to declaration' },
@@ -57,13 +66,22 @@ return {
       { '[d', desc = 'Previous diagnostic' },
       { ']d', desc = 'Next diagnostic' },
 
-      -- Quit
-      { '<leader>q', desc = 'Quit' },
-      { '<leader>Q', desc = 'Quit all without saving' },
+      -- Yank/Clipboard operations
+      { '<leader>y', desc = 'Yank to clipboard', mode = { 'n', 'v' } },
+      { '<leader>Y', desc = 'Yank line to clipboard' },
 
       -- Paste/Delete special
       { '<leader>p', desc = 'Paste without yanking', mode = 'x' },
       { '<leader>d', desc = 'Delete without yanking', mode = { 'n', 'v' } },
+
+      -- Line operations
+      { '<leader>o', desc = 'Insert blank line below' },
+      { '<leader>O', desc = 'Insert blank line above' },
+      { 'J', desc = 'Join lines (keep cursor)' },
+
+      -- Quit
+      { '<leader>q', desc = 'Quit' },
+      { '<leader>Q', desc = 'Quit all without saving' },
 
       -- Comment keybindings
       { 'gc', group = 'Comment' },
@@ -78,7 +96,7 @@ return {
       { '<C-h>', desc = 'Move to left window' },
       { '<C-j>', desc = 'Move to bottom window' },
       { '<C-k>', desc = 'Move to top window' },
-      { '<C-l>', desc = 'Move to right window' },
+      { '<C-l>', desc = 'Clear highlight and move right' },
 
       -- Window resize (Ctrl+arrows)
       { '<C-Up>', desc = 'Increase window height' },
@@ -95,14 +113,26 @@ return {
       -- Save
       { '<C-s>', desc = 'Save file', mode = { 'n', 'i' } },
 
-      -- Clear search highlight
-      { '<Esc>', desc = 'Clear search highlight' },
-
       -- Visual mode
       { '<', desc = 'Indent left and reselect', mode = 'v' },
       { '>', desc = 'Indent right and reselect', mode = 'v' },
       { 'J', desc = 'Move selection down', mode = 'v' },
       { 'K', desc = 'Move selection up', mode = 'v' },
-    })
+
+      -- Clipboard operations (visual mode)
+      { '<C-c>', desc = 'Copy to clipboard', mode = 'v' },
+      { '<C-x>', desc = 'Cut to clipboard', mode = 'v' },
+
+      -- Insert mode
+      { '<C-a>', desc = 'Select all', mode = 'i' },
+      { '<C-z>', desc = 'Undo', mode = 'i' },
+      { '<C-v>', desc = 'Paste from clipboard', mode = { 'i', 'n' } },
+      { '<C-BS>', desc = 'Delete word backward', mode = 'i' },
+
+      -- Select mode
+      { '<BS>', desc = 'Delete selection and insert', mode = 's' },
+    }
+
+    wk.add(keymaps)
   end,
 }

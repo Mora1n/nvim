@@ -71,6 +71,14 @@ vim.opt.backspace = 'indent,eol,start'
 -- Set highlight on search
 vim.opt.hlsearch = true
 
+-- VSCode-specific settings to fix search highlight issues
+if vim.g.vscode then
+  -- Disable incremental search highlighting in VSCode to prevent rendering issues
+  vim.opt.incsearch = false
+  -- Use VSCode's native search highlighting
+  vim.opt.hlsearch = false
+end
+
 -- True color support
 vim.opt.termguicolors = true
 

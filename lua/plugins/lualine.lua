@@ -1,8 +1,8 @@
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  event = 'VimEnter',  -- 优化：只需在启动时加载一次
-  cond = not vim.g.vscode,
+  event = 'VeryLazy',
+  enabled = vim.g.vscode == nil,
   config = function()
     require('lualine').setup({
       options = {

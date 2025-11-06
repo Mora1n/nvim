@@ -12,6 +12,7 @@ return {
     name = 'native-lsp',
     dir = vim.fn.stdpath('config'),
     event = { 'BufReadPre', 'BufNewFile' },
+    enabled = vim.g.vscode == nil,
     config = function()
       -- Load LSP configurations from lsp/ directory
       local lsp_dir = vim.fn.stdpath('config') .. '/lsp'
@@ -39,6 +40,9 @@ return {
           filetypes = ty_config.filetypes,
           root_dir = find_root(ty_config.root_markers),
           capabilities = capabilities,
+          flags = {
+            debounce_text_changes = 150,
+          },
           settings = {
             ty = {
               -- ty language server settings go here
@@ -55,7 +59,7 @@ return {
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
             vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-            vim.keymap.set('n', '<leader>f', function()
+            vim.keymap.set('n', '<leader>cf', function()
               vim.lsp.buf.format({ async = true })
             end, opts)
 
@@ -89,6 +93,9 @@ return {
                 cmd = ty_config.cmd,
                 root_dir = root,
                 capabilities = capabilities,
+                flags = {
+                  debounce_text_changes = 150,
+                },
               })
             end
           end,
