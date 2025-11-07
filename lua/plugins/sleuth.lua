@@ -1,4 +1,6 @@
+local utils = require('config.utils')
+
 return {
   'tpope/vim-sleuth',
-  event = { "BufReadPre", "BufNewFile" },
+  event = utils.events.file,
 }

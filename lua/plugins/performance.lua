@@ -1,5 +1,4 @@
 return {
-  -- Optimize buffer deletion
   {
     'ojroques/nvim-bufdel',
     cmd = { 'BufDel', 'BufDelAll', 'BufDelOthers' },
@@ -9,8 +8,6 @@ return {
       { '<leader>ba', '<cmd>BufDelAll<cr>', desc = 'Delete all buffers' },
       { '<leader>bo', '<cmd>BufDelOthers<cr>', desc = 'Delete other buffers' },
     },
-    opts = {
-      quit = false, -- Don't quit Neovim when deleting last buffer
-    },
+    opts = { quit = false },
   },
 }

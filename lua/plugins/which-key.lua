@@ -1,25 +1,27 @@
+local utils = require('config.utils')
+
 return {
   'folke/which-key.nvim',
-  event = 'VeryLazy',
-  config = function()
+  event = utils.events.lazy,
+  opts = {
+    preset = 'modern',
+    delay = 500,
+    icons = {
+      breadcrumb = '»',
+      separator = '➜',
+      group = '+',
+    },
+    win = {
+      border = utils.border,
+      padding = { 1, 2 },
+    },
+  },
+  config = function(_, opts)
     local wk = require('which-key')
-
-    wk.setup({
-      preset = 'modern',
-      delay = 500, -- delay before showing the popup (ms)
-      icons = {
-        breadcrumb = '»', -- symbol used in the command line area
-        separator = '➜', -- symbol used between a key and its label
-        group = '+', -- symbol prepended to a group
-      },
-      win = {
-        border = 'rounded', -- none, single, double, shadow, rounded
-        padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
-      },
-    })
+    wk.setup(opts)
 
     -- Document existing key chains
-    local keymaps = {
+    wk.add({
       -- Find group (FzfLua)
       { '<leader>f', group = 'Find' },
       { '<leader>ff', desc = 'Find files' },
@@ -154,8 +156,6 @@ return {
       { 'cs', desc = 'Change surround', mode = 'n' },
       { 'S', desc = 'Add surround', mode = 'v' },
       { 'gS', desc = 'Add surround on new lines', mode = 'v' },
-    }
-
-    wk.add(keymaps)
+    })
   end,
 }

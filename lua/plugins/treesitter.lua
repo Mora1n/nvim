@@ -1,49 +1,27 @@
+local utils = require('config.utils')
+
 return {
   'nvim-treesitter/nvim-treesitter',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-context',
-  },
+  dependencies = { 'nvim-treesitter/nvim-treesitter-context' },
   build = ':TSUpdate',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = utils.events.file,
   cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
-  enabled = vim.g.vscode == nil,
+  enabled = utils.not_vscode,
   config = function()
     require('nvim-treesitter.configs').setup({
       ensure_installed = {
-        'bash',
-        'c',
-        'cpp',
-        'css',
-        'go',
-        'gomod',
-        'html',
-        'javascript',
-        'json',
-        'jsonc',
-        'lua',
-        'make',
-        'markdown',
-        'markdown_inline',
-        'python',
-        'rust',
-        'toml',
-        'typescript',
-        'vimdoc',
-        'vue',
-        'yaml',
+        'bash', 'c', 'cpp', 'css', 'go', 'gomod', 'html',
+        'javascript', 'json', 'jsonc', 'lua', 'make',
+        'markdown', 'markdown_inline', 'python', 'rust',
+        'toml', 'typescript', 'vimdoc', 'vue', 'yaml',
       },
-      sync_install = false,
       auto_install = true,
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = false,
-        disable = function(lang, buf)
-          -- Disable for large files (consistent with autocmds.lua)
+        disable = function(_, buf)
           local max_filesize = 1024 * 1024 -- 1 MB
-          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then
-            return true
-          end
+          local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+          return ok and stats and stats.size > max_filesize
         end,
       },
       incremental_selection = {
@@ -55,19 +33,16 @@ return {
           node_decremental = '<S-TAB>',
         },
       },
-      indent = {
-        enable = true,
-        disable = {},
-      },
+      indent = { enable = true },
     })
 
     require('treesitter-context').setup({
-      enable = true,
       max_lines = 3,
       trim_scope = 'outer',
       mode = 'cursor',
     })
 
+    -- Disable smartindent for Python (treesitter handles it)
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'python',
       callback = function()

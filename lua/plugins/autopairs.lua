@@ -1,6 +1,8 @@
+local utils = require('config.utils')
+
 return {
   'windwp/nvim-autopairs',
-  event = "InsertEnter",
-  enabled = vim.g.vscode == nil,
-  opts = {} -- uses default configuration
+  event = utils.events.insert,
+  enabled = utils.not_vscode,
+  opts = {},
 }

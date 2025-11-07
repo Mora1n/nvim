@@ -1,4 +1,6 @@
+local utils = require('config.utils')
+
 return {
   'gpanders/editorconfig.nvim',
-  event = { "BufReadPre", "BufNewFile" },
+  event = utils.events.file,
 }

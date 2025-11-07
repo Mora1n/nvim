@@ -1,48 +1,30 @@
 -- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- NOTE: Must happen before plugins are loaded
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Early performance optimizations
--- Enable faster lua module loading (Neovim 0.9+)
-if vim.fn.has('nvim-0.9') == 1 then
-  vim.loader.enable()
-end
+vim.loader.enable() -- Enable faster lua module loading (Neovim 0.9+)
 
--- Disable some built-in plugins we don't need
-local disabled_built_ins = {
-  '2html_plugin',
-  'getscript',
-  'getscriptPlugin',
-  'gzip',
-  'logipat',
-  'netrw',
-  'netrwPlugin',
-  'netrwSettings',
-  'netrwFileHandlers',
-  'matchit',
-  'tar',
-  'tarPlugin',
-  'rrhelper',
-  'spellfile_plugin',
-  'vimball',
-  'vimballPlugin',
-  'zip',
-  'zipPlugin',
-  'tutor',
-  'rplugin',
-  'syntax',
-  'synmenu',
-  'optwin',
-  'compiler',
-  'bugreport',
-  'ftplugin',
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-  vim.g['loaded_' .. plugin] = 1
-end
+-- Disable built-in plugins we don't need
+vim.g.loaded_gzip = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_getscript = 1
+vim.g.loaded_getscriptPlugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_logiPat = 1
+vim.g.loaded_rrhelper = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwSettings = 1
+vim.g.loaded_netrwFileHandlers = 1
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -67,14 +49,14 @@ require('config.autocmds')
 
 -- Load plugins with performance optimizations
 require('lazy').setup('plugins', {
+  defaults = {
+    lazy = true, -- Lazy-load by default for better startup time
+  },
   performance = {
     cache = {
       enabled = true,
-      ttl = 3600 * 24 * 2, -- 2 days
     },
-    reset_packpath = true,
     rtp = {
-      reset = true,
       disabled_plugins = {
         'gzip',
         'matchit',
@@ -86,6 +68,9 @@ require('lazy').setup('plugins', {
         'zipPlugin',
       },
     },
+  },
+  ui = {
+    border = 'rounded',
   },
 })
 

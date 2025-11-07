@@ -1,13 +1,11 @@
+local utils = require('config.utils')
+
 return {
   'saghen/blink.cmp',
-  dependencies = {
-    'rafamadriz/friendly-snippets',
-  },
+  dependencies = { 'rafamadriz/friendly-snippets' },
   version = '1.*',
-  event = 'InsertEnter',
-  -- Disable in VSCode as it has its own completion system
-  enabled = vim.g.vscode == nil,
-
+  event = utils.events.insert,
+  enabled = utils.not_vscode,
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -15,18 +13,16 @@ return {
       preset = 'super-tab',
       ['<Esc>'] = { 'hide', 'fallback' },
     },
-
     appearance = {
       nerd_font_variant = 'mono',
     },
-
     completion = {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 200,
       },
       menu = {
-        border = 'rounded',
+        border = utils.border,
         draw = {
           treesitter = { 'lsp' },
           columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
@@ -39,7 +35,6 @@ return {
         },
       },
     },
-
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
       providers = {
@@ -52,19 +47,13 @@ return {
         },
       },
     },
-
     signature = {
       enabled = true,
-      window = {
-        border = 'rounded',
-      },
+      window = { border = utils.border },
     },
-
     fuzzy = {
       implementation = 'prefer_rust_with_warning',
-      frecency = {
-        enabled = true,
-      },
+      frecency = { enabled = true },
       use_proximity = true,
     },
   },

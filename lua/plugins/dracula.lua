@@ -1,5 +1,6 @@
 return {
   'Mofiqul/dracula.nvim',
+  lazy = false,
   priority = 1000,
   opts = {
     transparent_bg = true,
@@ -7,12 +8,12 @@ return {
   },
   config = function(_, opts)
     require('dracula').setup(opts)
-    vim.cmd.colorscheme 'dracula'
+    vim.cmd.colorscheme('dracula')
 
     -- Additional transparency settings
-    vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
+    local transparent_groups = { 'Normal', 'NormalFloat', 'NormalNC', 'SignColumn' }
+    for _, group in ipairs(transparent_groups) do
+      vim.api.nvim_set_hl(0, group, { bg = 'none' })
+    end
   end,
 }
