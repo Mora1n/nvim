@@ -11,7 +11,7 @@ return {
   opts = {
     keymap = {
       preset = 'super-tab',
-      ['<Esc>'] = { 'hide', 'fallback' },
+      ['<Esc>'] = { 'fallback' },
     },
     appearance = {
       nerd_font_variant = 'mono',
