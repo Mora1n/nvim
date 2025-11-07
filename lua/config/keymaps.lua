@@ -97,14 +97,14 @@ end
 
 if not is_vscode then
   -- Insert mode navigation and selection
-  vim.keymap.set('i', '<Home>', '<C-o>^')
-  vim.keymap.set('i', '<End>', '<C-o>$')
+  vim.keymap.set('i', '<Home>', '<Esc>I')
+  vim.keymap.set('i', '<End>', '<Esc>A')
   vim.keymap.set('i', '<S-Home>', '<Esc>v^')
   vim.keymap.set('i', '<S-End>', '<Esc>v$')
   vim.keymap.set('i', '<S-Left>', '<Esc>vh')
   vim.keymap.set('i', '<S-Right>', '<Esc>vl')
-  vim.keymap.set('i', '<C-Left>', '<C-o>b')
-  vim.keymap.set('i', '<C-Right>', '<C-o>w')
+  vim.keymap.set('i', '<C-Left>', '<C-o>B')
+  vim.keymap.set('i', '<C-Right>', '<C-o>W')
   vim.keymap.set('i', '<C-S-Left>', '<Esc>vb')
   vim.keymap.set('i', '<C-S-Right>', '<Esc>vw')
   vim.keymap.set('i', '<C-BS>', '<C-w>')
