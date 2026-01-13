@@ -14,6 +14,14 @@ if is_vscode then
   vim.keymap.set('n', 'N', 'N', { desc = 'Previous search result' })
   vim.keymap.set('n', '<C-d>', '<C-d>', { desc = 'Scroll down' })
   vim.keymap.set('n', '<C-u>', '<C-u>', { desc = 'Scroll up' })
+
+  -- VSCode LSP keymaps
+  local vscode = require('vscode')
+  vim.keymap.set('n', 'gd', function() vscode.action('editor.action.revealDefinition') end, { desc = 'Go to definition' })
+  vim.keymap.set('n', 'gD', function() vscode.action('editor.action.revealDeclaration') end, { desc = 'Go to declaration' })
+  vim.keymap.set('n', 'gr', function() vscode.action('editor.action.goToReferences') end, { desc = 'Go to references' })
+  vim.keymap.set('n', 'gi', function() vscode.action('editor.action.goToImplementation') end, { desc = 'Go to implementation' })
+  vim.keymap.set('n', 'K', function() vscode.action('editor.action.showHover') end, { desc = 'Hover documentation' })
 else
   -- Neovim: Keep cursor centered for better visibility
   vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and center' })
