@@ -57,7 +57,7 @@ The leader key is set to `<Space>`.
 *   **[autopairs.nvim](https://github.com/windwp/nvim-autopairs):** Auto-close brackets and quotes.
 *   **[Comment.nvim](https://github.com/numToStr/Comment.nvim):** Smart commenting with `gcc`, `gbc`, `Ctrl+/`.
 *   **[nvim-surround](https://github.com/kylechui/nvim-surround):** Manage surrounding pairs.
-*   **[vim-sleuth](https://github.com/tpope/vim-sleuth):** Auto-detect indentation.
+*   **[guess-indent.nvim](https://github.com/NMAC427/guess-indent.nvim):** Auto-detect indentation.
 *   **[vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent):** PEP8 indentation for Python.
 
 ### UI

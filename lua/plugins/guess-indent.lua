@@ -1,6 +1,7 @@
 local utils = require('config.utils')
 
 return {
-  'tpope/vim-sleuth',
+  'NMAC427/guess-indent.nvim',
   event = utils.events.file,
+  opts = {},
 }
